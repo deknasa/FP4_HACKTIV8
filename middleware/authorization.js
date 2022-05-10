@@ -57,6 +57,7 @@ const photoAuthorization = async(req, res, next) => {
 
 const commentAuthorization = async(req, res, next) => {
     const commentId = req.params.commentId;
+    console.log(commentId);
     const user_id = req.id;
     await Comment.findOne({ where: { id: commentId } })
         .then((comment) => {
@@ -69,7 +70,7 @@ const commentAuthorization = async(req, res, next) => {
             } else {
                 res.status(402).json({
                     name: "authorization error",
-                    devMessage: `User with  id ${user_id} does not have permission to acces comment with id ${id}`,
+                    devMessage: `User with  id ${user_id} does not have permission to acces comment with id ${commentId}`,
                 });
             }
         })

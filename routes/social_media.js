@@ -8,6 +8,6 @@ router.use(authentication);
 router.post("/", socialMediaController.postSocialMedia);
 router.get("/", socialMediaController.getAllSocialMedias);
 router.put("/:socialMediaId", socialMediaController.updateSocialMedias);
-router.delete("/:id", socialMediaController.deleteSocialMedia);
+router.delete("/:socialMediaId", socialMediaController.deleteSocialMedia);
 
 module.exports = router;

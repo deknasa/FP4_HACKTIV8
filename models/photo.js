@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         as: "comments",
         foreignKey: "photo_id",
       });
+      this.belongsTo(models.user, {
+        as: "user",
+        foreignKey: "user_id",
+      });
     }
   }
   photo.init({

@@ -6,7 +6,6 @@ exports.getAllComment = async(req, res) => {
     const user_id = req.id;
 
     await Comment.findAll({
-            where: { user_id },
             include: [{
                     model: Photo,
                     as: "photos",
@@ -69,20 +68,20 @@ exports.updateComments = async(req, res) => {
         comment: comment,
     };
     await Comment.update(dataComment, {
-            where: { id: commentId },
-            returning: true,
-        })
-        .then((comments) => {
-            res.status(200).json({
-                comments: comments[1],
-            });
-        })
-        .catch((error) => {
-            res.status(503).json({
-                message: "INTERNAL SERVER ERROR",
-                error: error,
-            });
+        where: { id: commentId },
+        returning: true,
+    })
+    .then((comments) => {
+        res.status(200).json({
+            comments: comments[1],
         });
+    })
+    .catch((error) => {
+        res.status(503).json({
+            message: "INTERNAL SERVER ERROR",
+            error: error,
+        });
+    });
 };
 
 exports.deleteComments = async(req, res) => {

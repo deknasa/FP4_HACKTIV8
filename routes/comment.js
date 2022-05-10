@@ -8,8 +8,7 @@ router.use(authentication);
 
 router.post("/", commentController.postComment);
 router.get("/", commentController.getAllComment);
-router.use(authorization);
-router.put("/:id", commentController.updateComments);
-router.delete("/:id", commentController.deleteComments);
+router.put("/:commentId", authorization, commentController.updateComments);
+router.delete("/:commentId", authorization, commentController.deleteComments);
 
 module.exports = router;
