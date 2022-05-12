@@ -60,12 +60,6 @@ exports.register = async (req, res) => {
             })
         })
     })
-    // .catch(e => {
-    //     res.status(503).send({
-    //         status: "FAILED",
-    //         message: "INTERNAL SERVER ERROR"
-    //     })
-    // })
 }
 
 exports.login = async (req, res) => {

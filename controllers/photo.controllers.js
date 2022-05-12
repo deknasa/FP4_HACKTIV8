@@ -57,7 +57,6 @@ exports.postPhoto = async(req, res) => {
         });
     })
     .catch((e) => {
-        console.log(e);
         res.status(503).json({
             message: "INTERNAL SERVER ERROR",
             error: e,
