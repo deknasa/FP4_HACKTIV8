@@ -11,7 +11,7 @@ exports.register = async (req, res) => {
     const age = req.body.age;
     const phone_number = req.body.phone_number
 
-    return User.findOne({
+    await User.findOne({
         where: {
             email: email,
             username: username,
@@ -60,13 +60,12 @@ exports.register = async (req, res) => {
             })
         })
     })
-    .catch(e => {
-        console.log(e);
-        res.status(503).send({
-            status: "FAILED",
-            message: "INTERNAL SERVER ERROR"
-        })
-    })
+    // .catch(e => {
+    //     res.status(503).send({
+    //         status: "FAILED",
+    //         message: "INTERNAL SERVER ERROR"
+    //     })
+    // })
 }
 
 exports.login = async (req, res) => {

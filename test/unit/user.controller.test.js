@@ -24,23 +24,23 @@ describe("userController signUP", () => {
     it("signUp should return 400 ", async() => {
         const email = "email@gmail.com";
         User.findOne.mockResolvedValue({ rows: [email] });
-        await userController.signUp(req, res);
+        await userController.register(req, res);
         expect(res.statusCode).toBe(400);
     });
 
     it("signUp should return 200 ", async() => {
         User.findOne.mockResolvedValue(null);
         User.create.mockResolvedValue({ name: "user" });
-        await userController.signUp(req, res);
-        expect(res.statusCode).toBe(200);
+        await userController.register(req, res);
+        expect(res.statusCode).toBe(201);
     });
 
     it("signUp should return error 503 test", async() => {
         const rejected = Promise.reject({ message: "can't sign up" });
         User.findOne.mockResolvedValue(null);
         User.create.mockResolvedValue(rejected);
-        await userController.signUp(req, res);
-        expect(res.statusCode).toBe(200);
+        await userController.register(req, res);
+        expect(res.statusCode).toBe(503);
     });
 });
 
@@ -52,7 +52,7 @@ describe("userController signIn", () => {
 
     it("sign should return 401 if email not found", async() => {
         User.findOne.mockResolvedValue(null);
-        await userController.signIn(req, res);
+        await userController.login(req, res);
         expect(res.statusCode).toBe(401);
     });
 
@@ -63,20 +63,20 @@ describe("userController signIn", () => {
         };
         User.findOne.mockResolvedValue(data);
         bcrypt.compareSync = jest.fn().mockImplementation(() => false);
-        await userController.signIn(req, res);
-        expect(res.statusCode).toBe(401);
+        await userController.login(req, res);
+        expect(res.statusCode).toBe(403);
     });
 
     it("sign in should return 200 ", async() => {
         User.findOne.mockResolvedValue({ user: "login" });
-        userController.signIn(req, res);
+        userController.login(req, res);
         expect(res.statusCode).toBe(200);
     });
 
     it("signIn should return 503", async() => {
         const rejected = Promise.reject({ message: "can't sign in" });
         User.findOne.mockResolvedValue(rejected);
-        await userController.signIn(req, res);
+        await userController.login(req, res);
         expect(res.statusCode).toBe(503);
     });
 });
