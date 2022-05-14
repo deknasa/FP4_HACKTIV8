@@ -35,22 +35,15 @@ exports.register = async (req, res) => {
             phone_number: phone_number
         })
         .then(user => {
-            const data = {
-                id: user.id,
-                email: email,
-                full_name: full_name,
-                username: username,
-                profile_image_url: profile_image_url,
-                age: age,
-                phone_number: phone_number
-
-            }
-            const token = generateToken(data)
             res.status(201).send({
-                status: "SUCCESS",
-                message: "Successfully Registered",
-                token: token,
-                data: user
+                data: {
+                    email: user.email,
+                    full_name: user.full_name,
+                    username: user.username,
+                    profile_image_url: user.profile_image_url,
+                    age: user.age,
+                    phone_number: user.phone_number
+                }
             })
         })
         .catch(e => {

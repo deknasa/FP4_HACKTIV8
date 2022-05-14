@@ -36,9 +36,9 @@ exports.getAllPhotos = async(req, res) => {
 };
 
 exports.postPhoto = async(req, res) => {
+    const poster_image_url = req.body.poster_image_url;
     const title = req.body.title;
     const caption = req.body.caption;
-    const poster_image_url = req.body.poster_image_url;
     const user_id = req.id;
 
     await Photo.create({
@@ -47,7 +47,7 @@ exports.postPhoto = async(req, res) => {
         poster_image_url: poster_image_url,
         user_id: user_id,
     })
-    .then((photo) => {
+    .then(photo => {
         res.status(201).send({
             id: photo.id,
             poster_image_url: photo.poster_image_url,
