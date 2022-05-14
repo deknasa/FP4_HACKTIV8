@@ -55,10 +55,18 @@ exports.register = async (req, res) => {
             })
         })
         .catch(e => {
+            console.log(e);
             res.status(503).send({
                 status: "FAILED",
                 message: "Failed to Register"
             })
+        })
+    })
+    .catch(e => {
+        console.log(e);
+        res.status(503).send({
+            status: "FAILED",
+            message: "INTERNAL SERVER ERROR"
         })
     })
 }
