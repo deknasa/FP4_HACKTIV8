@@ -2,7 +2,6 @@ const User = require("../models/index").user
 const bcrypt = require("bcrypt")
 const generateToken = require("../middleware/authentication").generateToken
 
-// user register function
 exports.register = async (req, res) => {
     const full_name = req.body.full_name;
     const email = req.body.email;
@@ -56,7 +55,7 @@ exports.register = async (req, res) => {
         })
         .catch(e => {
             console.log(e);
-            res.status(503).send({
+            res.status(403).send({
                 status: "FAILED",
                 message: "Failed to Register"
             })
