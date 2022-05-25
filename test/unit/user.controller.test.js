@@ -28,17 +28,23 @@ describe("userController signUP", () => {
         expect(res.statusCode).toBe(400);
     });
 
-    it("signUp should return 200 ", async() => {
+    it("signUp should return 201", async() => {
         User.findOne.mockResolvedValue(null);
         User.create.mockResolvedValue({ name: "user" });
         await userController.register(req, res);
         expect(res.statusCode).toBe(201);
     });
 
-    it("signUp should return error 503 test", async() => {
+    it("signUp should return 403", async() => {
         const rejected = Promise.reject({ message: "can't sign up" });
         User.findOne.mockResolvedValue(null);
         User.create.mockResolvedValue(rejected);
+        await userController.register(req, res);
+        expect(res.statusCode).toBe(403);
+    });
+    it("signUp should return 503", async() => {
+        const rejected = Promise.reject({ message: "can't sign up" });
+        User.findOne.mockResolvedValue(rejected);
         await userController.register(req, res);
         expect(res.statusCode).toBe(503);
     });
