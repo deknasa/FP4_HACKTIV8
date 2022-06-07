@@ -12,14 +12,13 @@ beforeEach(() => {
     res = httpMocks.createResponse();
 });
 
-describe("Comment getAllComment Testing", () => {
-    it("get All comment should return 200 ", async() => {
+describe("Comment Controller Get All Comment", () => {
+    it("getAllComment should return 200", async() => {
         Comment.findAll.mockResolvedValue({ comments: "comment" });
         await commentController.getAllComment(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("get All comment should return 503 ", async() => {
+    it("getAllComment should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Comment.findAll.mockResolvedValue(rejected);
         await commentController.getAllComment(req, res);
@@ -27,13 +26,13 @@ describe("Comment getAllComment Testing", () => {
     });
 });
 
-describe("userController signUP", () => {
-    it("post commentsshould return 400 ", async() => {
+describe("Comment Controller Post Comment", () => {
+    it("postComment should return 401", async() => {
         Comment.findOne.mockResolvedValue(null);
         await commentController.postComment(req, res);
         expect(res.statusCode).toBe(401);
     });
-    it("post comments should return 201 ", async() => {
+    it("postComments should return 200", async() => {
         const data = {
             comments: "comments",
             photo_id: 1,
@@ -43,8 +42,7 @@ describe("userController signUP", () => {
         await commentController.postComment(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("post comments should return 503 ", async() => {
+    it("postComments should return 503", async() => {
         const data = {
             comments: "comments",
             photo_id: 1,
@@ -57,14 +55,13 @@ describe("userController signUP", () => {
     });
 });
 
-describe("Comment updateComment Testing", () => {
-    it("update Comment should return 200 ", async() => {
+describe("Comment Controller Update Comment", () => {
+    it("updateComment should return 200", async() => {
         Comment.update.mockResolvedValue({ Comment: "Comments" });
         await commentController.updateComments(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("update Comment should return 503 ", async() => {
+    it("updateComment should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Comment.update.mockResolvedValue(rejected);
         await commentController.updateComments(req, res);
@@ -72,14 +69,13 @@ describe("Comment updateComment Testing", () => {
     });
 });
 
-describe("Comment deleteComment Testing", () => {
-    it("delete Comment should return 200 ", async() => {
+describe("Comment Controller Delete Comment", () => {
+    it("deleteComment should return 200", async() => {
         Comment.destroy.mockResolvedValue({ socialmedia: "intagram" });
         await commentController.deleteComments(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("delete Comment should return 503 ", async() => {
+    it("deleteComment should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Comment.destroy.mockResolvedValue(rejected);
         await commentController.deleteComments(req, res);
