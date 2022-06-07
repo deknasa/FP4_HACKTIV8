@@ -8,7 +8,7 @@ module.exports = {
         // port: 5432,
         // host: "ec2-52-200-215-149.compute-1.amazonaws.com",
         // dialect: "postgres",
-        user: process.env.DB_USER,
+        username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
         port: process.env.DB_PORT,
@@ -16,7 +16,7 @@ module.exports = {
         dialect: "postgres",
     },
     test: {
-        user: process.env.DB_USER,
+        username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
         port: process.env.DB_PORT,
@@ -24,7 +24,7 @@ module.exports = {
         dialect: "postgres",
     },
     production: {
-        // user: "ajbgokqjttgehv",
+        // username: "ajbgokqjttgehv",
         // password: "e9cc3881da171960b9de6284d3e7bdb85a14fe66180d159706fd9c624ad2bfb4",
         // database: "dafb0nqt2g2tng",
         // port: 5432,
