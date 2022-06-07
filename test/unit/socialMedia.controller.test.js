@@ -12,14 +12,13 @@ beforeEach(() => {
     res = httpMocks.createResponse();
 });
 
-describe("Social Media getAllSocialMedias Testing", () => {
-    it("getAll socialmedia should return 200 ", async() => {
+describe("Social Media Controller Get All Social Medias", () => {
+    it("should return 200", async() => {
         SocialMedia.findAll.mockResolvedValue({ socialmedia: "instagram" });
         await socialMediaController.getAllSocialMedias(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("getAll socialmedia should return 503 ", async() => {
+    it("should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         SocialMedia.findAll.mockResolvedValue(rejected);
         await socialMediaController.getAllSocialMedias(req, res);
@@ -27,14 +26,13 @@ describe("Social Media getAllSocialMedias Testing", () => {
     });
 });
 
-describe("Social Media postSocialMedia Testing", () => {
-    it("post socialmedia should return 200 ", async() => {
+describe("Social Media Controller Post Social Media", () => {
+    it("should return 201", async() => {
         SocialMedia.create.mockResolvedValue({ socialmedia: "intagram" });
         await socialMediaController.postSocialMedia(req, res);
         expect(res.statusCode).toBe(201);
     });
-
-    it("post socialmedia should return 503 ", async() => {
+    it("should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         SocialMedia.create.mockResolvedValue(rejected);
         await socialMediaController.postSocialMedia(req, res);
@@ -42,14 +40,13 @@ describe("Social Media postSocialMedia Testing", () => {
     });
 });
 
-describe("Social Media updateSocialMedias Testing", () => {
-    it("update socialmedia should return 200 ", async() => {
+describe("Social Media Controller Update Social Media", () => {
+    it("should return 200", async() => {
         SocialMedia.update.mockResolvedValue({ socialmedia: "intagram" });
         await socialMediaController.updateSocialMedias(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("update socialmedia should return 503 ", async() => {
+    it("should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         SocialMedia.update.mockResolvedValue(rejected);
         await socialMediaController.updateSocialMedias(req, res);
@@ -57,14 +54,13 @@ describe("Social Media updateSocialMedias Testing", () => {
     });
 });
 
-describe("Social Media deleteSocialMedia Testing", () => {
-    it("delete socialmedia should return 200 ", async() => {
+describe("Social Media Controller Delete Social Media", () => {
+    it("should return 200", async() => {
         SocialMedia.destroy.mockResolvedValue({ socialmedia: "intagram" });
         await socialMediaController.deleteSocialMedia(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("delete socialmedia should return 503 ", async() => {
+    it("should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         SocialMedia.destroy.mockResolvedValue(rejected);
         await socialMediaController.deleteSocialMedia(req, res);

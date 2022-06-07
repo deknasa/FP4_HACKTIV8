@@ -12,14 +12,13 @@ beforeEach(() => {
     res = httpMocks.createResponse();
 });
 
-describe("photo getAllPhotos Testing", () => {
-    it("get All photos should return 200 ", async() => {
+describe("Photo Controller Get All Photos", () => {
+    it("should return 200", async() => {
         Photo.findAll.mockResolvedValue({ photo: "photo" });
         await photoController.getAllPhotos(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("get All photos should return 503 ", async() => {
+    it("should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Photo.findAll.mockResolvedValue(rejected);
         await photoController.getAllPhotos(req, res);
@@ -27,14 +26,13 @@ describe("photo getAllPhotos Testing", () => {
     });
 });
 
-describe("Photo postPhoto Testing", () => {
-    it("post Photos should return 201 ", async() => {
+describe("Photo Controller Post Photo", () => {
+    it("post Photos should return 201", async() => {
         Photo.create.mockResolvedValue({ Photos: "photo" });
         await photoController.postPhoto(req, res);
         expect(res.statusCode).toBe(201);
     });
-
-    it("post Photos should return 503 ", async() => {
+    it("post Photos should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Photo.create.mockResolvedValue(rejected);
         await photoController.postPhoto(req, res);
@@ -42,14 +40,13 @@ describe("Photo postPhoto Testing", () => {
     });
 });
 
-describe("Photo updatePhoto Testing", () => {
-    it("update Photo should return 200 ", async() => {
+describe("Photo Controller Update Photo", () => {
+    it("Update Photo should return 200", async() => {
         Photo.update.mockResolvedValue({ photo: "photos" });
         await photoController.updatePhoto(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("update Photo should return 503 ", async() => {
+    it("Update Photo should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Photo.update.mockResolvedValue(rejected);
         await photoController.updatePhoto(req, res);
@@ -57,14 +54,13 @@ describe("Photo updatePhoto Testing", () => {
     });
 });
 
-describe("Photo deletePhoto Testing", () => {
-    it("delete photo should return 200 ", async() => {
+describe("Photo Controller Delete Photo", () => {
+    it("delete photo should return 200", async() => {
         Photo.destroy.mockResolvedValue({ socialmedia: "intagram" });
         await photoController.deletePhoto(req, res);
         expect(res.statusCode).toBe(200);
     });
-
-    it("delete photo should return 503 ", async() => {
+    it("delete photo should return 503", async() => {
         const rejected = Promise.reject({ message: "error" });
         Photo.destroy.mockResolvedValue(rejected);
         await photoController.deletePhoto(req, res);
