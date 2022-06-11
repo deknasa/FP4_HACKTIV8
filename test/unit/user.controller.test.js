@@ -3,6 +3,7 @@ const httpMocks = require("node-mocks-http");
 const bcrypt = require("bcrypt");
 const User = require("../../models/index").user;
 const generate = require("../../middleware/authentication").generateToken;
+const request = require('supertest')
 
 jest.mock("../../models");
 jest.mock("../../middleware/authentication");

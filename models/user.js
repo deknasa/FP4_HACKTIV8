@@ -25,13 +25,90 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   user.init({
-    full_name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    profile_image_url: DataTypes.TEXT,
-    age: DataTypes.INTEGER,
-    phone_number: DataTypes.INTEGER
+    full_name: {
+      type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+          args: true,
+          msg: "full_name is required",
+        },
+      },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        args: true,
+        msg: "Email address already in use. Try another one!",
+      },
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "Email is required",
+        },
+        isEmail: {
+          args: true,
+          msg: "email must be valid",
+        },
+      },
+    },
+    username: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "username is required",
+        },
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "password is required",
+        },
+      }
+    },
+    profile_image_url: {
+      type: DataTypes.TEXT,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "password is required",
+        },
+        isUrl: {
+          args: true,
+          msg: "profile_image_url muet be url",
+        }
+      }
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "age is required",
+        },
+        isInt: {
+          args: true,
+          msg: "balance must be integer",
+        },
+      }
+    },
+    phone_number: {
+      type: DataTypes.NUMBER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "phone_number is required",
+        },
+        isInt: {
+          args: true,
+          msg: "phone_number must be integer",
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'user',

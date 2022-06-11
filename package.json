@@ -16,11 +16,15 @@
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
-    "jest": "^28.1.0"
+    "jest": "^28.1.0",
+    "supertest": "^6.2.3"
   },
   "scripts": {
-    "test": "jest --coverage",
-    "start": "node index.js"
+    "test": "NODE_ENV=test npx jest --detectOpenHandles",
+    "start": "node index.js",
+    "db": "npx sequelize db:migrate",
+    "db:create:test": "NODE_ENV=test npx sequelize db:create",
+    "db:migrate:test": "NODE_ENV=test npx sequelize db:migrate"
   },
   "author": "",
   "license": "ISC"

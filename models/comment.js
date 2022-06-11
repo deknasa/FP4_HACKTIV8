@@ -4,11 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class comment extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    
     static associate(models) {
       this.belongsTo(models.user, {
         as: "user",
@@ -21,9 +17,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   comment.init({
-    user_id: DataTypes.INTEGER,
-    photo_id: DataTypes.INTEGER,
-    comment: DataTypes.TEXT
+    user_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "photo_id is required",
+        },
+      }
+    },
+    photo_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "photo_id is required",
+        },
+      }
+    },
+    comment: {
+      type: DataTypes.TEXT,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: "comment is required",
+        },
+      }
+    },
   }, {
     sequelize,
     modelName: 'comment',
