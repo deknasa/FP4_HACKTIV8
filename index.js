@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 9490;
-// console.log(process.env);
 const userRouter = require('./routes/user')
 const photoRouter = require('./routes/photo')
 const commentRouter = require('./routes/comment')
@@ -16,8 +15,8 @@ app.use('/comments', commentRouter)
 app.use('/socialmedias', socialMediaRouter)
 
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Server is running on port ${port}`);
+// });
 
 module.exports = app

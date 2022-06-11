@@ -2,11 +2,11 @@ require("dotenv").config();
 
 module.exports = {
     development: {
-        // user: "ajbgokqjttgehv",
-        // password: "e9cc3881da171960b9de6284d3e7bdb85a14fe66180d159706fd9c624ad2bfb4",
-        // database: "dafb0nqt2g2tng",
+        // username: "euixlpygycmjol",
+        // password: "bee04866d5a7b7119bad04db366cc5a49117472804fb719c0a85b66ceb2a5e6d",
+        // database: "d7l0uknvvcvo6m",
         // port: 5432,
-        // host: "ec2-52-200-215-149.compute-1.amazonaws.com",
+        // host: "ec2-3-226-163-72.compute-1.amazonaws.com",
         // dialect: "postgres",
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
@@ -24,11 +24,11 @@ module.exports = {
         dialect: "postgres",
     },
     production: {
-        // username: "ajbgokqjttgehv",
-        // password: "e9cc3881da171960b9de6284d3e7bdb85a14fe66180d159706fd9c624ad2bfb4",
-        // database: "dafb0nqt2g2tng",
+        // username: "euixlpygycmjol",
+        // password: "bee04866d5a7b7119bad04db366cc5a49117472804fb719c0a85b66ceb2a5e6d",
+        // database: "d7l0uknvvcvo6m",
         // port: 5432,
-        // host: "ec2-52-200-215-149.compute-1.amazonaws.com",
+        // host: "ec2-3-226-163-72.compute-1.amazonaws.com",
         // dialect: "postgres",
         // dialectOptions: {
         //     ssl: {
@@ -51,11 +51,9 @@ module.exports = {
         port: process.env.DB_PORT,
         host: process.env.DB_HOST,
         dialect: "postgres",
-        // dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false,
-            }
-        // }
+        ssl: {
+            require: true,
+            rejectUnauthorized: false,
+        }
     },
 };
