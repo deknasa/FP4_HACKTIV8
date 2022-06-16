@@ -4,11 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class socialmedia extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+   
     static associate(models) {
       this.belongsTo(models.user, {
         as: "user",
@@ -17,9 +13,41 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   socialmedia.init({
-    name: DataTypes.STRING,
-    social_media_url: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+          notEmpty: {
+              args: true,
+              msg: "name is required",
+          },
+      }
+  },
+  user_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+          notEmpty: {
+              args: true,
+              msg: "user_id is required",
+          },
+          isInt: {
+              args: true,
+              msg: "user_id must be integer",
+          },
+      }
+  },
+  social_media_url: {
+      type: DataTypes.TEXT,
+      validate: {
+          notEmpty: {
+              args: true,
+              msg: "social_media_url is required",
+          },
+          isUrl: {
+              args: true,
+              msg: "profile_image_url muet be url",
+          }
+      }
+  },
   }, {
     sequelize,
     modelName: 'socialmedia',

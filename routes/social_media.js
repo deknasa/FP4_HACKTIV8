@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const socialMediaController = require("../controllers/socialMedia.controllers");
 const authentication = require("../middleware/authentication").verify;
-const authorization = require("../middleware/authorization");
+const {authorization, socialMediaAuthorization} = require("../middleware/authorization");
 
 router.use(authentication);
 router.post("/", socialMediaController.postSocialMedia);
 router.get("/", socialMediaController.getAllSocialMedias);
-router.put("/:socialMediaId", socialMediaController.updateSocialMedias);
-router.delete("/:socialMediaId", socialMediaController.deleteSocialMedia);
+router.put("/:socialMediaId", socialMediaAuthorization, socialMediaController.updateSocialMedias);
+router.delete("/:socialMediaId", socialMediaAuthorization, socialMediaController.deleteSocialMedia);
 
 module.exports = router;

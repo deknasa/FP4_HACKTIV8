@@ -4,11 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class photo extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    
     static associate(models) {
       this.hasMany(models.comment, {
         as: "comments",
@@ -21,10 +17,43 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   photo.init({
-    title: DataTypes.STRING,
-    caption: DataTypes.TEXT,
-    poster_image_url: DataTypes.TEXT,
-    user_id: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+          notEmpty: {
+              args: true,
+              msg: "title is required",
+          },
+      }
+  },
+  caption: {
+      type: DataTypes.TEXT,
+      validate: {
+          notEmpty: {
+              args: true,
+              msg: "caption is required",
+          },
+      }
+  },
+  poster_image_url: {
+      type: DataTypes.TEXT,
+      validate: {
+          notEmpty: {
+              args: true,
+              msg: "pasposter_image_urlsword is required",
+          },
+          isUrl: {
+              args: true,
+              msg: "poster_image_url muet be url",
+          }
+      }
+  },
+  user_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+
+      }
+  },
   }, {
     sequelize,
     modelName: 'photo',
