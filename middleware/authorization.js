@@ -48,7 +48,6 @@ const photoAuthorization = async(req, res, next) => {
             }
         })
         .catch((error) => {
-            console.log(error);
             res.status(503).json({
                 message: "INTERNAL SERVER ERROR",
             });
@@ -75,7 +74,6 @@ const commentAuthorization = async(req, res, next) => {
             }
         })
         .catch((error) => {
-            console.log(error);
             res.status(503).json({
                 message: "INTERNAL SERVER ERROR",
             });
@@ -101,7 +99,6 @@ const socialMediaAuthorization = async(req, res, next) => {
             }
         })
         .catch((error) => {
-            console.log(error);
             res.status(503).json({
                 message: "INTERNAL SERVER ERROR",
             });
