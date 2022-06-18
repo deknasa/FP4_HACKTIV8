@@ -4,10 +4,10 @@ const Comment = require("../models/index").comment;
 const SocialMedia = require("../models/index").socialmedia;
 
 const userAuthorization = async(req, res, next) => {
-    const id = req.params.id;
+    const userId = req.params.userId;
     const user_id = req.id;
 
-    await User.findOne({ where: { id } })
+    await User.findOne({ where: { id: userId } })
         .then((user) => {
             if (!user) {
                 res.status(401).json({
@@ -43,7 +43,7 @@ const photoAuthorization = async(req, res, next) => {
             } else {
                 res.status(402).json({
                     name: "authorization error",
-                    devMessage: `User with  id ${user_id} does not have permission to acces Photos with id ${id}`,
+                    devMessage: `User with  id ${user_id} does not have permission to acces Photos with id ${photoId}`,
                 });
             }
         })
@@ -56,8 +56,8 @@ const photoAuthorization = async(req, res, next) => {
 
 const commentAuthorization = async(req, res, next) => {
     const commentId = req.params.commentId;
-    console.log(commentId);
     const user_id = req.id;
+    console.log(commentId);
     await Comment.findOne({ where: { id: commentId } })
         .then((comment) => {
             if (!comment) {
@@ -94,7 +94,7 @@ const socialMediaAuthorization = async(req, res, next) => {
             } else {
                 res.status(402).json({
                     name: "authorization error",
-                    devMessage: `User with  id ${user_id} does not have permission to acces socialmedia with id ${id}`,
+                    devMessage: `User with  id ${user_id} does not have permission to acces socialmedia with id ${socialMediaId}`,
                 });
             }
         })
